@@ -1,3 +1,5 @@
 #!/bin/sh
 
-printf "%s%d%%\n" "$(sed 's/Discharging/🔋/; s/Charging\|Full\|Unknown/🔌/' < /sys/class/power_supply/BAT0/status)" "$(cat /sys/class/power_supply/BAT0/capacity)"
+BAT="/sys/class/power_supply/BAT0"
+[ -d "$BAT" ] || exit
+printf "%s%d%%\n" "$(sed 's/Discharging/🔋/; s/Charging\|Full\|Unknown/🔌/' < $BAT/status)" "$(cat $BAT/capacity)"
