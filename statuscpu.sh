@@ -2,7 +2,7 @@
 # run in intervals
 
 prevfile="$XDG_RUNTIME_DIR/cpu"
-[ -f "$prevfile" ] || echo "0 0"
+[ -f "$prevfile" ] || echo "0 0" > "$prevfile"
 read prevtotal prevused <"$prevfile"
 
 current="$(awk 'NR==1 { sum=0; for(i=2; i<=11; i++) sum+=$(i); print sum, sum-$5 }' /proc/stat)"
