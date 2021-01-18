@@ -1,5 +1,6 @@
 #!/bin/sh
-path="/sys/class/drm/card0/device"
-[ -f "$path/gpu_busy_percent" ] || exit 1 
-usage="$(cat "$path/gpu_busy_percent")"
-printf "GPU %s%%\\n" "$usage"
+drms="/sys/class/drm"
+card="$drms/card0/device/gpu_busy_percent"
+[ -f "$card" ] || exit 1
+usage="$(cat "$card")"
+printf 'GPU %2d%%\n' "$usage"
